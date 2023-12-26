@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+
+{% block main %}
+	{% for circuit in circuits %}
+		{% for seance in circuit %}
+			{% for info in seance %}
+				{{ info ~ " > "}}
+			{% endfor %}
+		{% endfor %}
+		<br/>
+		{{ "Durée total des séances : " ~ circuit.dureeFilmTotal ~ " min" }}
+		<br/>
+		{{ "Durée des déplacements : " ~ circuit.tempsTrajet ~ " min"}}
+		<br/>
+		<br/>
+	{% endfor %}
+{% endblock %}

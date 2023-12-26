@@ -1,0 +1,15 @@
+Options +FollowSymLinks
+Options +Indexes
+RewriteEngine On
+
+ErrorDocument 404 /index
+
+# -------------------
+# Réécriture des URLs
+# -------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$                index.php?controller=$1&action=$2&param=$3 [L]
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$                               index.php?controller=$1&action=$2 [L]
+RewriteRule ^([a-zA-Z0-9]+)$                                              index.php?controller=$1 [L]

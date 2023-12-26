@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.editorAssociations": {},
+		"editor.rulers": [
+			80,
+			120
+		],
+		"terminal.explorerKind": "external",
+		"terminal.integrated.gpuAcceleration": "on",
+		"liveSassCompile.settings.generateMap": false,
+		"liveSassCompile.settings.showOutputWindowOn": "Information",
+		"liveSassCompile.settings.watchOnLaunch": true,
+		"liveSassCompile.settings.autoprefix": [],
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "compressed",
+				"extensionName": ".min.css",
+				"savePath": "/public/assets/css"
+			}
+		],
+		"scss.lint.idSelector": "error",
+		"intelephense.environment.phpVersion": "8.2.0",
+		"php.validate.executablePath": "C:/laragon/bin/php/php-8.2.4-nts-Win32-vs16-x64/php.exe",
+		"php.debug.executablePath": "C:/laragon/bin/php/php-8.2.4-nts-Win32-vs16-x64/php.exe",
+		"cSpell.language": "fr-FR",
+		"cSpell.languageSettings": [],
+		"cSpell.minWordLength": 3,
+		"cSpell.showAutocompleteSuggestions": true,
+		"liveSassCompile.settings.forceBaseDirectory": "",
+		"liveSassCompile.settings.includeItems": [],
+		"liveSassCompile.settings.excludeList": [
+			"/**/node_modules/**",
+			"/.vscode/**",
+			"/**/vendor/**"
+		],
+		"testing.automaticallyOpenPeekView": "never",
+	}
+}

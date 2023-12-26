@@ -1,0 +1,67 @@
+{
+    "name": "gourdain.jf/cirkvito",
+    "description": "Calcul tous les circuits pour le festival de Cannes",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "JFG",
+            "email": "jf.gourdain@gmail.com"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "8.2"
+        },
+        "optimize-autoloader": false,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "php-http/discovery": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "Exception\\": "src/Exception/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "src/Tests/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "twig/twig": "^3.8",
+        "twig/intl-extra": "^3.8",
+        "twig/extra-bundle": "^3.8",
+        "twig/string-extra": "^3.8"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3",
+        "nunomaduro/phpinsights": "^2.11",
+        "phpstan/phpstan": "^1.10",
+        "rector/rector": "^0.18.13",
+        "phpmd/phpmd": "^2.15",
+        "squizlabs/php_codesniffer": "^3.8"
+    },
+    "scripts": {
+        "stan": "vendor/bin/phpstan analyse -c conf/phpstan.neon",
+        "insights": "vendor/bin/phpinsights -v --config-path=conf/phpinsights.php",
+        "insights-fix": "vendor/bin/phpinsights --f composer --config-path=conf/phpinsights.php",
+        "insights-summary": "vendor/bin/phpinsights -s --config-path=conf/phpinsights.php",
+        "format": "vendor/bin/phpcs --standard=PSR12 src",
+        "format-fix": "vendor/bin/phpcbf src",
+        "purge": "purgecss -c conf/purgecss.config.js",
+        "rector": "vendor/bin/rector process src --dry-run --xdebug -c conf/rector.php",
+        "tsc": "tsc -p conf/tsconfig.json",
+        "phpmd": "vendor/phpmd/phpmd/src/bin/phpmd src html --color -v  conf/phpmd.xml > report.html",
+        "post-update-cmd": [
+            "npm install npm@latest",
+            "npm install",
+            "cp -R node_modules/leaflet/dist/leaflet.js public/assets/js",
+            "cp -R node_modules/leaflet/dist/leaflet.css public/assets/css",
+            "cp -R node_modules/leaflet/dist/images/ public/assets/"
+        ]
+    }
+}

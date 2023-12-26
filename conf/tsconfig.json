@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "AMD",
+        "moduleResolution": "Node",
+        "noEmitOnError": false,
+        "noUncheckedIndexedAccess": true,
+        "outDir": "../public/assets/js",
+        "pretty": true,
+        "removeComments": true,
+        "strict": true,
+        "target": "ESNext",
+        "paths": {
+            "dayjs": [
+                "./node_modules/dayjs/"
+            ]
+        }
+    },
+    "include": [
+        "../public/assets/ts-scss/ts/**/*"
+    ]
+}
