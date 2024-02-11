@@ -1,0 +1,44 @@
+{% extends "layout.twig" %}
+
+        {% block main %}
+            <main class="container">
+                <div class="row">
+                    {% for circuit in circuits %}
+                        <div class="mb-3">
+                            <h3>{{ 'Circuit n°' ~ loop.index }}</h3>
+                            <ul class="list-group">
+                                {% set date = '' %}
+                                {% set dateSuivante = '' %}
+                                {% for seance in circuit['chemin'][1:] %}
+                                    {% if seance['heureDebut'] | format_datetime('medium', 'none') != dateSuivante %}
+                                        {% set date = seance['heureDebut'] | format_datetime('medium', 'none') %}
+                                    {% endif %}
+                                    {% if date != dateSuivante %}
+                                        <li class="list-group-item bg-success bg-gradient text-white">
+                                            {{ date }}
+                                        </li>
+                                    {% endif %}
+                                    {% if seance['idSeance'] != 0 %}
+                                        <li class="list-group-item d-flex">
+                                            <div class="col-1 form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                            </div>
+                                            <div class="col-1 form-check">
+                                                <input type="checkbox" class="form-check-input">
+                                            </div>
+                                            <div class="col-1 badge text-bg-primary">
+                                                {{ seance['heureDebut'] | format_datetime('none', 'short') }}
+                                            </div>
+                                            <div class="col-4 p-1">{{ seance['titre'] }}</div>
+                                            <div class="col-3 text-center">{{ seance['nomSalle'] }}</div>
+                                            <div class="col-2 text-end">{{ seance['duree'] ~ ' min' }}</div>
+                                        </li>
+                                    {% endif %}
+                                    {% set dateSuivante = date %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </main>
+        {% endblock %}

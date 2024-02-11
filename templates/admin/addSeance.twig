@@ -1,0 +1,63 @@
+{% extends "layout.twig" %}
+
+        {% block main %}
+            <main class="container">
+                <form method="post" action="/admin/saveSeance" class="row">
+                    <div class="col-3">
+                        <label for="heureDebutMin" class="form-label">Sections :</label>
+                        <select class="form-select" size="9" name="idSection" required>
+                            {% for id, nom in sections %}
+                                <option value="{{ id }}">{{ nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="heureDebutMin" class="form-label">Salles :</label>
+                        <select class="form-select" size="5" name="idSalle" required>
+                            {% for id, nom in salles %}
+                                <option value="{{ id }}">{{ nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="heureDebutMin" class="form-label">Films :</label>
+                        <select class="form-select" size="15" name="idFilm" required>
+                            {% for id, nom in films %}
+                                <option value="{{ id }}">{{ nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="heureDebutMin" class="form-label">Heure de début des séances :</label>
+                        <input type="datetime-local" class="form-control" name="dateSeance" value="2023-05-18T08:00" min="2023-05-18T08:00" max="2023-05-27T23:59" required>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit" accesskey="s">Enregistrer la séance</button>
+                    </div>
+                </form>
+                <div>
+                    <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Nom de la salle</th>
+                                <th>Date</th>
+                                <th>Heure de début</th>
+                                <th>Durée</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for seance in seances %}
+                                <tr>
+                                    <td>{{ seance['titre'] | title }}</td>
+                                    <td>{{ seance['nomSalle'] |title }}</td>
+                                    <td>{{ seance['heureDebut'] | format_datetime('none', 'short', locale='fr') }}</td>
+                                    <td>{{ seance['heureDebut'] | format_datetime('short', 'none', locale='fr') }}</td>
+                                    <td>{{ seance['duree'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        {% endblock %}

@@ -11,9 +11,9 @@
     ],
     "config": {
         "platform": {
-            "php": "8.2"
+            "php": "8.3"
         },
-        "optimize-autoloader": false,
+        "optimize-autoloader": true,
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "php-http/discovery": true
@@ -35,7 +35,9 @@
         "twig/twig": "^3.8",
         "twig/intl-extra": "^3.8",
         "twig/extra-bundle": "^3.8",
-        "twig/string-extra": "^3.8"
+        "twig/string-extra": "^3.8",
+        "twbs/bootstrap": "^5.3",
+        "fortawesome/font-awesome": "^6.5"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.3",
@@ -43,11 +45,12 @@
         "phpstan/phpstan": "^1.10",
         "rector/rector": "^0.18.13",
         "phpmd/phpmd": "^2.15",
-        "squizlabs/php_codesniffer": "^3.8"
+        "squizlabs/php_codesniffer": "^3.8",
+        "phpunit/phpunit": "^10.5"
     },
     "scripts": {
         "stan": "vendor/bin/phpstan analyse -c conf/phpstan.neon",
-        "insights": "vendor/bin/phpinsights -v --config-path=conf/phpinsights.php",
+        "insights": "vendor/bin/phpinsights analyse src -v --config-path=conf/phpinsights.php",
         "insights-fix": "vendor/bin/phpinsights --f composer --config-path=conf/phpinsights.php",
         "insights-summary": "vendor/bin/phpinsights -s --config-path=conf/phpinsights.php",
         "format": "vendor/bin/phpcs --standard=PSR12 src",
@@ -55,10 +58,15 @@
         "purge": "purgecss -c conf/purgecss.config.js",
         "rector": "vendor/bin/rector process src --dry-run --xdebug -c conf/rector.php",
         "tsc": "tsc -p conf/tsconfig.json",
-        "phpmd": "vendor/phpmd/phpmd/src/bin/phpmd src html --color -v  conf/phpmd.xml > report.html",
+        "phpmd": "vendor/bin/phpmd src text -v ./conf/phpmd.xml",
+        "tests": "vendor/bin/phpunit -c conf/phpunit.xml.dist",
         "post-update-cmd": [
             "npm install npm@latest",
             "npm install",
+            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/assets/css",
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/assets/js",
+            "cp -R vendor/fortawesome/font-awesome/css/all.min.css public/assets/css/",
+            "cp -R vendor/fortawesome/font-awesome/webfonts/ public/assets/",
             "cp -R node_modules/leaflet/dist/leaflet.js public/assets/js",
             "cp -R node_modules/leaflet/dist/leaflet.css public/assets/css",
             "cp -R node_modules/leaflet/dist/images/ public/assets/"

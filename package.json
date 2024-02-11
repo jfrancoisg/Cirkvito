@@ -1,7 +1,10 @@
 {
   "dependencies": {
-    "leaflet": "^1.9.4",
-    "npm": "^10.2.5",
+    "dayjs": "^1.11.10",
+    "leaflet": "^1.9.4"
+  },
+  "devDependencies": {
+    "npm": "^10.4.0",
     "purgecss": "^5.0.0"
   }
 }

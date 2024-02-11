@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/laragon/www/Cirkvito/db/db.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2291"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,6:mainagency"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE IF NOT EXISTS agency (
+  agency_id varchar(255) NOT NULL,
+  agency_name varchar(255) DEFAULT NULL,
+  agency_url varchar(255) DEFAULT NULL,
+  agency_timezone varchar(255) DEFAULT NULL,
+  agency_lang varchar(255) DEFAULT NULL,
+  agency_phone varchar(255) DEFAULT NULL,
+  agency_fare_url varchar(255) DEFAULT NULL,
+  agency_email varchar(255) DEFAULT NULL,
+  PRIMARY KEY (agency_id)
+);
+
+CREATE TABLE IF NOT EXISTS distances (
+  id_salle_depart int(10) NOT NULL,
+  id_salle_arrivee int(10) NOT NULL,
+  distance float DEFAULT NULL,
+  temps float NOT NULL,
+  PRIMARY KEY (id_salle_depart,id_salle_arrivee),
+  FOREIGN KEY (id_salle_arrivee) REFERENCES salle(id_salle_arrivee)
+);
+
+CREATE TABLE IF NOT EXISTS film (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  titre varchar(50) NOT NULL,
+  duree int(10) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS salle (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  nom varchar(32) NOT NULL,
+  adresse varchar(32) NOT NULL,
+  id_ville int(10) NOT NULL,
+  latitude float DEFAULT NULL,
+  longitude float DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS seance (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  heure_debut datetime NOT NULL,
+  id_salle INTEGER NOT NULL,
+  id_film INTEGER NOT NULL,
+  id_section INTEGER DEFAULT NULL,
+  FOREIGN KEY (id_salle) REFERENCES salle(id_salle),
+  FOREIGN KEY (id_film) REFERENCES film(id_film),
+  FOREIGN KEY (id_section) REFERENCES section(id_section)
+);
+
+CREATE TABLE IF NOT EXISTS section (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  nom varchar(255) NOT NULL,
+  sigle varchar(8) NOT NULL,
+  remarque varchar(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ville (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  nom varchar(50) NOT NULL,
+  code_postal varchar(5) NOT NULL
+);</sql><current_tab id="0"/></tab_sql></sqlb_project>

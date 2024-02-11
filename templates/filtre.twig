@@ -1,0 +1,55 @@
+{% extends "layout.twig" %}
+
+        {% block main %}
+            <main class="container">
+                <form id="parametrage" action="/seance/circuits" method="post">
+                    <div class="parent">
+                        <div class="films">
+                            <label class="form-label">Films à exclure</label>
+                            <select class="form-select" size="15" multiple name="filmList[]">
+                                {% for id, film in films %}
+                                    <option value="{{ id }}">{{ film }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="salles">
+                            <label class="form-label">Salles à exclure</label>
+                            <select class="form-select" size="5" multiple name="salleList[]">
+                                {% for id, salle in salles %}
+                                    <option value="{{ id }}">{{ salle }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="heureMin">
+                            <label for="heureDebutMin" class="form-label">Début des séances</label>
+                            <input type="datetime-local" class="form-control" id="heureDebutMin" name="heureDebutMin" value="2023-05-18T08:00" min="2023-05-18T08:00" max="2023-05-27T23:59"/>
+                        </div>
+                        <div class="heureMax">
+                            <label for="heureDebutMin" class="form-label">Fin des séances</label>
+                            <input type="datetime-local" class="form-control" id="heureFinMax" name="heureFinMax" value="2023-05-18T23:59" min="2023-05-18T08:00" max="2023-05-27T23:59"/>
+                        </div>
+                        <div class="nbSeanceMin">
+                            <label for="heureDebutMin" class="form-label">Nb séances min</label>
+                            <input type="number" class="form-control" id="minFilm" name="minFilm" value="3" min="1" max="10">
+                        </div>
+                        <div class="nbSeanceMax">
+                            <label for="heureDebutMin" class="form-label">Nb séances max</label>
+                            <input type="number" class="form-control" id="maxFilm" name="maxFilm" value="10" min="1" max="10">
+                        </div>
+                        <div class="filtrer">
+                            <button type="submit" class="btn btn-primary" accesskey="s">Filtrer</button>
+                        </div>
+                        <div class="annuler">
+                            <button type="reset" class="btn btn-alert" accesskey="a">Annuler</button>
+                        </div>
+                    </div>
+                </form>
+            </main>
+        {% endblock %}
+
+        {# nombre de film minimum #}
+        {# nombre de film maximum #}
+        {# films à inclure #}
+        {# salle à inclure #}
+
+        {# Afficher dynamiquement le nombre de circuit possible #}

@@ -38,7 +38,7 @@ final class Router
 
                 $this->methodExist($controller, $this->action);
             } else {
-                $this->index('astar');
+                $this->index('seance');
             }
         } else {
             throw new ErreurController();

@@ -1,0 +1,77 @@
+@import "_colors";
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $fond;
+    color: $text-color;
+    font-size: 1.2rem;
+}
+
+button[type=submit] {
+    background-color: $button-submit-border-color;
+    border: 1px solid $button-submit-border-color;
+}
+
+button[type=reset] {
+    background-color: $button-reset-border-color;
+    border: 1px solid $button-reset-border-color;
+}
+
+@media (orientation: portrait) {
+    .container {
+        display: none;
+    }
+}
+
+@media (orientation: landscape) {
+    .parent {
+        display: grid;
+        grid-template-columns: 35% 25% repeat(2, 20%);
+        grid-template-rows: repeat(3, 1fr) 30px;
+        grid-column-gap: 0;
+        grid-row-gap: 0;
+        grid-template-areas:
+            "film sale hemn hemx"
+            "film sale .    .   "
+            "film .    nsmi nsma"
+            "filt anul .    .   ";
+    }
+
+    .films {
+        grid-area: film;
+    }
+
+    .heureMin {
+        grid-area: hemn;
+    }
+
+    .heureMax {
+        grid-area: hemx;
+    }
+
+    .nbSeanceMin {
+        grid-area: nsmi;
+    }
+
+    .nbSeanceMax {
+        grid-area: nsma;
+    }
+
+    .salles {
+        grid-area: sale;
+    }
+
+    .filtrer {
+        grid-area: filt;
+    }
+
+    .annuler {
+        grid-area: anul;
+    }
+}
